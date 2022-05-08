@@ -1,3 +1,35 @@
-.App {
+/* .parent-body {
+  background: url("./background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: 100vh;
+} */
+
+.parent-body {
+  overflow-x: hidden;
+}
+.search {
+  background-color: #001d42;
+  color: white;
+}
+.search:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #001d42;
+}
+.tutorialsContainer {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-row-gap: 12px;
+  grid-column-gap: 8px;
+}
+
+.bgbContainer {
+  position: relative;
   text-align: center;
+  color: white;
 }
