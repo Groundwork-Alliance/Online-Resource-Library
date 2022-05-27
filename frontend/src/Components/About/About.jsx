@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import HeaderBwlowNavbar from "../utils/Navbar/HeaderBwlowNavbar";
 import { FaReact, FaBootstrap, FaNodeJs } from "react-icons/fa";
 import { SiExpress, SiMysql } from "react-icons/si";
@@ -19,6 +20,9 @@ export default function About() {
   };
   return (
     <div>
+      <Helmet>
+        <title>About</title>
+      </Helmet>
       <HeaderBwlowNavbar page={"About"} quote={"The idea behind ORL."} />
       <div className="w-75" style={aboutHeadingInfContainer}>
         <h3 style={aboutHeading}>About</h3>
@@ -70,7 +74,7 @@ export default function About() {
           FAQ's
           <a
             className="ms-2"
-            href="#"
+            href="/faq"
             style={{ fontSize: "28px", textDecoration: "none" }}
           >
             Here !!

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import "./Home.css";
 import TrendionTechnologies from "./TrendionTechnologies";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -13,6 +14,9 @@ export default function Home() {
   };
   return (
     <div>
+      <Helmet>
+        <title>ORL</title>
+      </Helmet>
       <div className="row codebg orl">
         <div
           className="ms-5 h1"

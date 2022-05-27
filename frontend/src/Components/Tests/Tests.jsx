@@ -1,9 +1,13 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import HeaderBwlowNav from "../utils/Navbar/HeaderBelowNav";
 export default function Tests() {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 2, 33, 3, 4, 4, 4, 5];
   return (
     <div>
+      <Helmet>
+        <title>Tests</title>
+      </Helmet>
       <div className="p-5" style={{ position: "relative", left: "18%" }}>
         <p style={{ fontSize: "20px", color: "#001d42" }}>
           Search for the test here

@@ -1,15 +1,11 @@
 import React from "react";
-
+import { Carousel } from "react-bootstrap";
 export default function TrendionTechnologies() {
   return (
     <div className="mb-2">
-      <div
-        id="carouselExampleSlidesOnly"
-        className="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active mt-3">
+      <Carousel autoPlay={true} interval={3000}>
+        <Carousel.Item>
+          <div className=" active mt-3">
             <h4
               className="mt-3"
               style={{
@@ -38,7 +34,9 @@ export default function TrendionTechnologies() {
               and garbage-collected.
             </h6>
           </div>
-          <div className="carousel-item mt-3">
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className=" mt-3">
             <h4
               className="mt-3"
               style={{
@@ -66,35 +64,9 @@ export default function TrendionTechnologies() {
               by humans because they require human intelligence and discernment.
             </h6>
           </div>
-          <div className="carousel-item mt-3">
-            <h4
-              className="mt-3"
-              style={{
-                textAlign: "center",
-                color: "#001d42",
-                fontWeight: "700",
-              }}
-            >
-              Java
-            </h4>
-            <h6
-              style={{
-                textAlign: "center",
-                color: "#001d42",
-                fontSize: "20px",
-                position: "relative",
-                left: "13%",
-                filter: "blur(0px)",
-                fontFamily: "Poppins, sans-serif",
-              }}
-              className="mt-2 w-75 mb-5"
-            >
-              Java is a high-level, class-based, object-oriented programming
-              language that is designed to have as few implementation
-              dependencies as possible.
-            </h6>
-          </div>
-          <div className="carousel-item mt-3">
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className=" mt-3">
             <h4
               className="mt-3"
               style={{
@@ -122,7 +94,9 @@ export default function TrendionTechnologies() {
               by Meta and a community of individual developers and companies.
             </h6>
           </div>
-          <div className="carousel-item mt-3">
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className=" mt-3">
             <h4
               className="mt-3"
               style={{
@@ -151,7 +125,9 @@ export default function TrendionTechnologies() {
               and writing markup.
             </h6>
           </div>
-          <div className="carousel-item mt-3">
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className=" mt-3">
             <h4
               className="mt-3"
               style={{
@@ -180,8 +156,8 @@ export default function TrendionTechnologies() {
               continue to be making headlines for the foreseeable future.
             </h6>
           </div>
-        </div>
-      </div>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

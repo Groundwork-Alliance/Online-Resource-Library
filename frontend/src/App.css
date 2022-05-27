@@ -11,6 +11,7 @@
 
 .parent-body {
   overflow-x: hidden;
+  font-family: Poppins, sans-serif;
 }
 .search {
   background-color: #001d42;
@@ -32,4 +33,13 @@
   position: relative;
   text-align: center;
   color: white;
+}
+
+/* for login form */
+.loginBackground {
+  background: url("Components/utils/Login-Signup/login.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }

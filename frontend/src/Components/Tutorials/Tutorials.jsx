@@ -1,8 +1,19 @@
 import React from "react";
+import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 import HeaderBwlowNav from "../utils/Navbar/HeaderBelowNav";
 export default function Tutorials() {
+  const history = useNavigate();
+  const arr = [1, 2, 3, 4, 5];
+  const goToTutorial = (e) => {
+    let id = e.currentTarget.value;
+    id && history(`/tutorial/${id}`);
+  };
   return (
     <div>
+      <Helmet>
+        <title>Tutorials</title>
+      </Helmet>
       <div className="p-5" style={{ position: "relative", left: "18%" }}>
         <p style={{ fontSize: "20px", color: "#001d42" }}>
           Search for the tutorial here
@@ -27,51 +38,21 @@ export default function Tutorials() {
           className="row gap-4 p-5"
           style={{ position: "relative", left: "10%" }}
         >
-          <div
-            className="col-md-3 border rounded border-1 border-dark p-3"
-            style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
-          >
-            <div style={{ padding: "5%" }} className="h1">
-              JAva
-            </div>
-            <button className="btn search">Watch Tutorial</button>
-          </div>
-          <div
-            className="col-md-3 border rounded border-1 border-dark p-3"
-            style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
-          >
-            <div style={{ padding: "5%" }} className="h1">
-              Cloud Comp[uting]
-            </div>
-            <button className="btn search">Watch Tutorial</button>
-          </div>
-          <div
-            className="col-md-3 border rounded border-1 border-dark p-3"
-            style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
-          >
-            <div style={{ padding: "5%" }} className="h1">
-              Python
-            </div>
-            <button className="btn search">Watch Tutorial</button>
-          </div>
-          <div
-            className="col-md-3 border rounded border-1 border-dark p-3"
-            style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
-          >
-            <div style={{ padding: "5%" }} className="h1">
-              Python
-            </div>
-            <button className="btn search">Watch Tutorial</button>
-          </div>
-          <div
-            className="col-md-3 border rounded border-1 border-dark p-3"
-            style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
-          >
-            <div style={{ padding: "5%" }} className="h1">
-              Python
-            </div>
-            <button className="btn search">Watch Tutorial</button>
-          </div>
+          {arr.map((e) => {
+            return (
+              <div
+                className="col-md-3 border rounded border-1 border-dark p-3"
+                style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
+              >
+                <div style={{ padding: "5%" }} className="h1">
+                  JAva
+                </div>
+                <button className="btn search" onClick={goToTutorial} value={e}>
+                  Watch Tutorial
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

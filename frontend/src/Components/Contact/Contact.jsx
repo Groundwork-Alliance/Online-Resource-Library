@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import HeaderBwlowNavbar from "../utils/Navbar/HeaderBwlowNavbar";
 import {
   AiOutlineInstagram,
@@ -14,6 +15,9 @@ export default function Contact() {
   };
   return (
     <div>
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <HeaderBwlowNavbar
         page={"Contact"}
         quote={"How to get in touch with the team"}
@@ -34,6 +38,7 @@ export default function Contact() {
             <input
               type="text"
               className="form-control border border-1 border-dark"
+              placeholder="Your name"
             />
             <label htmlFor="" className="mt-2" style={formLabel}>
               Email Address
@@ -41,6 +46,7 @@ export default function Contact() {
             <input
               type="email"
               className="form-control border border-1 border-dark"
+              placeholder="Your e-mail address"
             />
             <label htmlFor="" className="mt-2" style={formLabel}>
               Your Message
@@ -50,6 +56,7 @@ export default function Contact() {
               id=""
               rows="5"
               className="form-control border border-1 border-dark"
+              placeholder="What can we help with?"
             ></textarea>
             <button
               className="btn btn-primary mt-3 w-25"

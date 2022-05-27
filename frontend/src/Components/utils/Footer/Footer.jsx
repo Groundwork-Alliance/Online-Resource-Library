@@ -1,15 +1,6 @@
 import React from "react";
 
 export default function Footer() {
-  const brandName = {
-    color: "black",
-    textDecoration: "none",
-    fontWeight: "700",
-    position: "relative",
-    fontSize: "30px",
-    top: "5%",
-    left: "9%",
-  };
   return (
     <div className="mt-auto">
       <div
