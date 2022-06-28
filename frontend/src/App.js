@@ -15,15 +15,18 @@ import AdminHome from "./Components/Admin/AdminHome";
 import Summery from "./Components/Admin/Summery";
 import AllTests from "./Components/Admin/AllTests";
 import AllUsers from "./Components/Admin/AllUsers";
+import Alladmins from "./Components/Admin/Alladmins";
 import AllTutorials from "./Components/Admin/AllTutorials";
 import { Routes, Route } from "react-router-dom";
 import AdminNavbar from "./Components/utils/Navbar/AdminNavbar";
+import Signup from "./Components/utils/Login-Signup/Signup";
+import React from "react";
 
 function App() {
   return (
-    <div className="parent-body">
-      {/* <Navbar /> */}
-      <AdminNavbar />
+    <div className="parent-body d-flex flex-column min-vh-100">
+      <Navbar />
+      {/* <AdminNavbar /> */}
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/tutorials" element={<Tutorials />}></Route>
@@ -38,7 +41,10 @@ function App() {
         <Route path="/summery" element={<Summery />}></Route>
         <Route path="/alltutorials" element={<AllTutorials />}></Route>
         <Route path="/allusers" element={<AllUsers />}></Route>
+        <Route path="/alladmins" element={<Alladmins />}></Route>
         <Route path="/alltests" element={<AllTests />}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
       </Routes>
       <Footer />
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import HeaderBwlowNav from "../utils/Navbar/HeaderBelowNav";
 export default function Tests() {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 2, 33, 3, 4, 4, 4, 5];
+  const arr = ["python", "java", "HTML", "React", "mysql"];
   return (
     <div>
       <Helmet>
@@ -34,7 +34,7 @@ export default function Tests() {
               style={{ backgroundColor: "#F4F7FA" }}
             >
               <div className="row">
-                <div className="col-md-8 h3">Python</div>
+                <div className="col-md-8 h3 text-capitalize">{v}</div>
                 <div className="col-md-4">
                   <button
                     value={v}

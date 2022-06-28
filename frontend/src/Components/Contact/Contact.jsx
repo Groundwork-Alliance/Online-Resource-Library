@@ -84,7 +84,7 @@ export default function Contact() {
           </p>
           <p className="ms-2">
             We aim to reply to all enquiries within 24 hours, but we often reply
-            much faster than that during working hours.
+            much faster than that.
           </p>
 
           <p className="ms-2">

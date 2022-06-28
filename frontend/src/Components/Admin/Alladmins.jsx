@@ -12,7 +12,7 @@ export default function AllUsers() {
 
   let [allUSersData,setAllUsersData] = React.useState([])
   React.useEffect(()=>{
-    fetch("http://localhost:8080/allusers")
+    fetch("http://localhost:8080/alladmins")
       .then((res) => res.json())
       .then((data) => {
         setAllUsersData(data);
@@ -34,7 +34,7 @@ export default function AllUsers() {
     <div>
       <div className="bg-light p-2">
         <p className="h3" style={{ marginLeft: "4%", color: "#001d42" }}>
-          All users
+          All Admins
         </p>
       </div>
       <div className="container" style={{ width: "90%" }}>

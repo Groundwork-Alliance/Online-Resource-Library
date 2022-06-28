@@ -8,7 +8,7 @@ export default function Footer() {
         className="p-1"
       >
         <p className="h6 mt-1" style={{ fontWeight: "700", color: "#001d42" }}>
-          © Copyright 2021-2022 Suyog Kulkarni All rights reserved.
+          © Copyright 2021-2022 | All rights reserved.
         </p>
       </div>
     </div>

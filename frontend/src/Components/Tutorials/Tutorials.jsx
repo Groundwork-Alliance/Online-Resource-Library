@@ -3,8 +3,17 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import HeaderBwlowNav from "../utils/Navbar/HeaderBelowNav";
 export default function Tutorials() {
+
+  let [tutorials,setTutorials]=React.useState('');
+
+  React.useEffect(() => {
+    fetch("http://localhost:8080/allturorialsontutorialspage")
+      .then((res) => res.json())
+      .then((data) => {
+       setTutorials(data);
+      });
+  });
   const history = useNavigate();
-  const arr = [1, 2, 3, 4, 5];
   const goToTutorial = (e) => {
     let id = e.currentTarget.value;
     id && history(`/tutorial/${id}`);
@@ -33,21 +42,25 @@ export default function Tutorials() {
       </div>
       <HeaderBwlowNav page={"Tutorials"} />
       {/* main section for all the tutorials */}
-      <div className="mt-5">
+      {
+        tutorials.length===0?
+        <h5 style={{color:"#001d42",fontSize:"27px",margin:"6% 0 0 35%"}}>No tutorial is available currently!!!<br/>&nbsp;&nbsp;&nbsp; Sorry for the inconvenience</h5>
+        :
+        <div className="mt-5">
         <div
           className="row gap-4 p-5"
           style={{ position: "relative", left: "10%" }}
         >
-          {arr.map((e) => {
+          {tutorials.map((e) => {
             return (
               <div
                 className="col-md-3 border rounded border-1 border-dark p-3"
                 style={{ textAlign: "center", backgroundColor: "#F4F7FA" }}
               >
-                <div style={{ padding: "5%" }} className="h1">
-                  JAva
+                <div style={{ padding: "5%" }} className="h1 text-capitalize">
+                  {e.name}
                 </div>
-                <button className="btn search" onClick={goToTutorial} value={e}>
+                <button className="btn search" onClick={goToTutorial} value={e.tutorial_id}>
                   Watch Tutorial
                 </button>
               </div>
@@ -55,6 +68,8 @@ export default function Tutorials() {
           })}
         </div>
       </div>
+      }
+     
     </div>
   );
 }
