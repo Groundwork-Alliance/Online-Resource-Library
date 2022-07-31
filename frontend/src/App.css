@@ -43,3 +43,51 @@
   background-size: cover;
   background-attachment: fixed;
 }
+
+.react-quiz-container{
+  width: 90%!important;
+  padding: 1%;
+  color:#001d42;
+  font-weight: 700;
+}
+
+.react-quiz-container h2{
+  width: 100%;
+}
+
+.react-quiz-container div{
+}
+
+.startQuizBtn
+{
+  background-color: blue !important;
+  color:aliceblue !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+}
+
+.answerBtn
+{
+  width: 700px !important;
+  border: 1px solid rgb(191, 191, 191) !important;
+}
+
+.nextQuestionBtn
+{
+
+  background-color: blue !important;
+  color:aliceblue !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+}
+.quiz-synopsis
+{
+  width: 750px !important;
+  letter-spacing: 1px;
+  font-size: 19px !important;
+}
+.quiz-synopsis::before{
+  content: "Description: ";
+  color: red;
+}

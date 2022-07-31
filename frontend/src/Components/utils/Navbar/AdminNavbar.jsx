@@ -61,6 +61,8 @@ export default function AdminNavbar() {
           <FaQuestion size={"15px"} className="float-start mt-1 me-2" />
           FAQ's
         </a>
+
+        
       </Popover.Header>
       <Popover.Header onClick={logout}>
         <a href="#" style={profilePopoverMenus}>
@@ -75,7 +77,7 @@ export default function AdminNavbar() {
     <div style={{ backgroundColor: "#F4F7FA" }}>
       <div className="row">
         <div className="col-md-6">
-          <Link to="/summery" className=" text-opacity-75" style={brandName}>
+          <Link to="/home" className=" text-opacity-75" style={brandName}>
             ORL
             <span
               style={{
@@ -96,10 +98,19 @@ export default function AdminNavbar() {
               <Link
                 className="nav-link"
                 aria-current="page"
-                to="/summery"
+                to="/home"
                 style={link}
               >
                 Summery
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                to="/alladmins"
+                style={link}
+              >
+                Admins
               </Link>
             </li>
             <li className="nav-item">

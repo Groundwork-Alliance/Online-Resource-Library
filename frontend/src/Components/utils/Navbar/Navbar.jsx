@@ -75,7 +75,7 @@ export default function Navbar() {
     <div style={{ backgroundColor: "#F4F7FA" }}>
       <div className="row">
         <div className="col-md-6">
-          <Link to="/" className=" text-opacity-75" style={brandName}>
+          <Link to="/home" className=" text-opacity-75" style={brandName}>
             ORL
             <span
               style={{
@@ -96,7 +96,7 @@ export default function Navbar() {
               <Link
                 className="nav-link"
                 aria-current="page"
-                to="/"
+                to="/home"
                 style={link}
               >
                 Home

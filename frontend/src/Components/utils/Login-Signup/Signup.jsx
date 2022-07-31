@@ -2,15 +2,15 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
+import LoginNavbar from "../Navbar/LoginNavbar";
+import Footer from "../Footer/Footer";
 export default function Signup() {
-  
-  const history = useNavigate()  
+  const history = useNavigate();
   let [userName, setUsername] = React.useState("");
   let [userEmail, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [success, setSuccess] = React.useState(0);
-  
+
   const updateStates = (e) => {
     if (e.target.name === "userName") {
       setUsername(e.target.value);
@@ -24,9 +24,9 @@ export default function Signup() {
   React.useEffect(() => {
     if (success === 1) {
       notify();
-      setTimeout(()=>{
-        history('/login')
-      },5000)
+      setTimeout(() => {
+        history("/");
+      }, 5000);
       setSuccess(0);
     }
   });
@@ -52,11 +52,13 @@ export default function Signup() {
   };
 
   const notify = () =>
-    toast("Sign up successfull !, wait for a moment we are redirecting you to login page ");
+    toast(
+      "Sign up successfull !, wait for a moment we are redirecting you to login page "
+    );
 
   const loginForm = {
     backgroundColor: "#FAF9FA",
-    marginTop: "10%",
+    marginTop: "7%",
     marginBottom: "13%",
     width: "30%",
   };
@@ -75,9 +77,9 @@ export default function Signup() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        hideProgressBar
+        hideProgressBar={false}
       />
-      {/* <LoginNavbar /> */}
+      <LoginNavbar />
       <div>
         <div style={loginForm} className="container border rounded">
           <h1
@@ -86,9 +88,6 @@ export default function Signup() {
           >
             Signup
           </h1>
-          {/* <h4 style={{ color: "#001d42" }} className="text-center">
-                To access the Resources
-              </h4> */}
           <form onSubmit={submitSignupForm} action="">
             <label htmlFor="" className="form-label mt-1">
               Name
@@ -133,14 +132,14 @@ export default function Signup() {
               Signup
             </button>
             <p className="text-center">
-              <a href="/login" style={{ textDecoration: "none" }}>
+              <a href="/" style={{ textDecoration: "none" }}>
                 Already a user ? click here to login
               </a>
             </p>
           </form>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

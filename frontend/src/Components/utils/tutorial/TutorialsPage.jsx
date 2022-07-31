@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import HeaderBwlowNavbar from "../Navbar/HeaderBwlowNavbar";
 import HeaderBelowNavForTutorial from "../Navbar/HeaderBelowNavForTutorial";
 export default function TutorialsPage() {
   let [tutorialData, setTutorialData] = React.useState([]);

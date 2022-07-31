@@ -1,0 +1,34 @@
+{
+  "quizTitle": "python Quiz Demo",
+  "quizSynopsis": "python is a programming language blah blah blah.",
+  "nrOfQuestions": "2",
+  "questions": [
+    {
+      "question":
+        "How can you access the state of a component from inside of a member function in python?",
+      "questionType": "text",
+      "answerSelectionType": "single",
+      "answers": [
+        "this.getState()",
+        "this.prototype.stateValue",
+        "this.state",
+        "this.values"
+      ],
+      "correctAnswer": "3",
+      "point": "1"
+    },
+    {
+      "question": "What are the advantages of React python?",
+      "questionType": "text",
+      "answerSelectionType": "multiple",
+      "answers": [
+        "React can be used on client and as well as server side too",
+        "Using React increases readability and makes maintainability easier. Component, Data patterns improves readability and thus makes it easier for manitaining larger apps",
+        "React components have lifecycle events that fall into State/Property Updates",
+        "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer"
+      ],
+      "correctAnswer": [1, 2, 4],
+      "point": "1"
+    }
+  ]
+}
