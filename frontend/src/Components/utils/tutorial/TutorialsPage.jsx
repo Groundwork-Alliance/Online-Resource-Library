@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderBelowNavForTutorial from "../Navbar/HeaderBelowNavForTutorial";
 export default function TutorialsPage() {
   let [tutorialData, setTutorialData] = React.useState([]);
   let { id } = useParams();
+  let history = useNavigate();
   React.useEffect(() => {
     const url = `http://localhost:8080/gettutorial`;
     fetch(url, {
@@ -19,6 +21,9 @@ export default function TutorialsPage() {
       });
   });
 
+  // const testPage = (e) => {
+  //   history(`/testpage/${e.target.value}`);
+  // };
   return (
     <div className="mb-5">
       {tutorialData.map((e) => {
@@ -65,9 +70,14 @@ export default function TutorialsPage() {
                 >
                   Download Free E-book
                 </a>
-                <a href="#" className="btn search" style={{ width: "20%" }}>
+                {/* <a
+                  value={e.test_name}
+                  onClick={testPage}
+                  className="btn search"
+                  style={{ width: "20%" }}
+                >
                   Attempt Quiz
-                </a>
+                </a> */}
               </div>
             </div>
           </>

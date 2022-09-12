@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BsTrophy } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 export default function TestPage() {
   const { testname } = useParams();
   const [questions, setQuestions] = useState([1]);
   let [i, seti] = useState(0);
   let [score, setScore] = useState(0);
   let quesstionNumber = 0;
+  let history = useNavigate();
   useEffect(() => {
     const url = "http://localhost:8080/gettest";
     fetch(url, {
@@ -22,11 +24,32 @@ export default function TestPage() {
       });
   });
 
+  const saveresult = (e) => {
+    let data = JSON.parse(sessionStorage.getItem("userData"));
+    console.info("data--->>", data);
+    let email = data[0]["email"];
+    const url = "http://localhost:8080/saveresult";
+    fetch(url, {
+      method: "post",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        testname: testname,
+        userEmail: email,
+        score: score,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data['affectedRows'] === 1)
+        {
+          history('/tests')
+        }
+      });
+  };
   const nextQuestion = (e) => {
     seti(i + 1);
     if (e.target.value === questions[i].answer) {
       setScore(score + 1);
-      console.log("current Score------>", score);
     }
   };
 
@@ -67,7 +90,7 @@ export default function TestPage() {
           className="text-center d-flex align-items-center justify-content-center"
           style={{ fontSize: "22px" }}
         >
-          <button className="btn btn-success w-25">
+          <button className="btn btn-success w-25" onClick={saveresult}>
             <span>OK</span>
           </button>
         </p>
@@ -81,14 +104,20 @@ export default function TestPage() {
           style={{ display: "flex", flexDirection: "column" }}
         >
           <span
-            style={{ fontSize: "30px", color: "#001d42", fontweight: "700" }}
+            style={{
+              fontSize: "30px",
+              color: "#001d42",
+              fontweight: "700",
+              textTransform: "capitalize",
+            }}
           >
             Test : {testname}
           </span>
           <span
+            className="ms-1"
             style={{ fontSize: "20px", color: "#001d42", fontweight: "700" }}
           >
-            Total Questions : {questions.length}
+            Questions : {questions.length}
           </span>
           <hr className="bg-dark" style={{ width: "97%" }} />
         </div>
@@ -102,24 +131,23 @@ export default function TestPage() {
                   fontweight: "700",
                 }}
               >
-                Q{i+1}. {questions[i].question}
+                Q{i + 1}. {questions[i].question}
               </p>
             </div>
             <div>
               <div>
                 <div className=" w-50 p-2 mb-1">
                   <button
-                    className="btn border border-1 w-100"
+                    className="btn border border-1 w-100 border-secondary"
                     value={questions[i].op1}
                     onClick={nextQuestion}
-                    style={{boxShadow:"5px 10px 18px #F4F7FA"}}
                   >
                     <span className="float-start"> {questions[i].op1}</span>
                   </button>
                 </div>
                 <div className=" w-50 p-2 mb-1">
                   <button
-                    className="btn border border-1 w-100"
+                    className="btn border border-1 w-100 border-secondary"
                     value={questions[i].op2}
                     onClick={nextQuestion}
                   >
@@ -128,7 +156,7 @@ export default function TestPage() {
                 </div>
                 <div className=" w-50 p-2 mb-1">
                   <button
-                    className="btn border border-1 w-100"
+                    className="btn border border-1 w-100 border-secondary"
                     value={questions[i].op3}
                     onClick={nextQuestion}
                   >
@@ -137,7 +165,7 @@ export default function TestPage() {
                 </div>
                 <div className=" w-50 p-2 mb-1">
                   <button
-                    className="btn border border-1 w-100"
+                    className="btn border border-1 w-100 border-secondary"
                     value={questions[i].op4}
                     onClick={nextQuestion}
                   >

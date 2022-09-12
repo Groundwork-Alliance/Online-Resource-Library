@@ -11,10 +11,10 @@ App.use(cors());
 App.use(bodyParser.json());
 
 App.get("/", (req, res) => {
-  let qu = "SHOW TABLES";
+  let qu = "SHOW TABLES FROM orldb";
   db.query(qu, (err, result) => {
     if (err) {
-      console.log("err");
+      console.log("err while gettting the tables from orldb", err);
     } else {
       if (result.length === 0) {
         res.send("No tables are available currently!");
@@ -72,7 +72,18 @@ App.post("/login", (req, res) => {
     }
   });
 });
-
+App.post("/changepassword", (req, res) => {
+  let { userEmail, newpassword } = req.body;
+  console.log(req.body)
+  let query = `UPDATE orldb.user SET password="${newpassword}" WHERE email="${userEmail}"`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log("error while updating the tutorial: ", err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 App.post("/addtutorial", (req, res) => {
   let { tutorialName, tutorialsUrl, courtesy, ebook, test, active } = req.body;
   let query = `INSERT INTO orldb.tutorial(name,url,courtesy,ebook,test_name,active) VALUES("${tutorialName}","${tutorialsUrl}","${courtesy}","${ebook}","${test}","${active}")`;
@@ -189,20 +200,23 @@ App.get("/alladmins", (req, res) => {
 });
 
 App.post("/getalltests", (req, res) => {
-  let dirpath = path.join(__dirname, "tests");
-  fs.readdir(dirpath, (err, data) => {
+  let qu = "SHOW TABLES FROM orltests";
+  db.query(qu, (err, result) => {
     if (err) {
-      console.log("error while scanning for test files: ", err);
+      console.log("err while gettting the tables from orldb", err);
     } else {
-      res.json(data);
+      if (result.length === 0) {
+        res.send("No tables are available currently!");
+      } else {
+        res.send(result);
+      }
     }
   });
 });
 
 App.post("/gettest", (req, res) => {
   let { filename } = req.body;
-  let query = `SELECT * FROM orldb.${filename}`;
-  console.log(filename)
+  let query = `SELECT * FROM orltests.${filename}`;
   db.query(query, (err, result) => {
     if (err) {
       console.log(`err while getting test data from ${filename} table.`, err);
@@ -210,9 +224,128 @@ App.post("/gettest", (req, res) => {
       res.json(result);
     }
   });
-
 });
 
+App.post("/deletetest", (req, res) => {
+  let { testname } = req.body;
+  let query = `DROP TABLE orltests.${testname}`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`err while getting test data from ${testname} table.`, err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.post("/edittest", (req, res) => {
+  let { testname } = req.body;
+  let query = `SELECT * FROM orltests.${testname}`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`err while getting test data from ${testname} table.`, err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.post("/addtest", (req, res) => {
+  let { testname } = req.body;
+  let query = `CREATE TABLE orltests.${testname}(
+    test_id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    question varchar(255),
+    op1 varchar(255),
+    op2 varchar(255),
+    op3 varchar(255),
+    op4 varchar(255),
+    answer varchar(255)
+  );`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log("error while adding the test---->", err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.post("/addquestions", (req, res) => {
+  let { tablename, question, op1, op2, op3, op4, answer } = req.body;
+  let query = `INSERT INTO orltests.${tablename}(question,op1,op2,op3,op4,answer) VALUES("${question}","${op1}","${op2}","${op3}","${op4}","${answer}")`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`err while adding questions into test table`, err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.post("/delequestion", (req, res) => {
+  let { questionid, testname } = req.body;
+  let query = `DELETE FROM orltests.${testname} WHERE test_id=${questionid}`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(
+        `err While deleting the question from ${testname} with id ${questionid}`,
+        err
+      );
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.post("/getquestiondata", (req, res) => {
+  let { id, testname } = req.body;
+  let query = `SELECT * FROM orltests.${testname} WHERE test_id=${id}`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(
+        `err While retriving question data from ${testname} with id ${id}`,
+        err
+      );
+    } else {
+      res.json(result);
+    }
+  });
+});
+App.post("/updatequestion", (req, res) => {
+  let { id, testname, question, op1, op2, op3, op4, answer } = req.body;
+  let query = `update orltests.${testname} SET question="${question}", op1="${op1}", op2="${op2}", op3="${op3}", op4="${op4}", answer="${answer}" WHERE test_id="${id}"`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`error while updating question in ${testname} for id ${id}: `, err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+App.post("/verifyemail", (req, res) => {
+  let {userEmail}  = req.body;
+  let query = `SELECT * FROM orldb.user WHERE email="${userEmail}"`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`error while verifying email address for table use nad email ${userEmail}: `, err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+App.post('/saveresult', (req, res)=>{
+  let {testname, userEmail, score} = req.body;
+  let query = `INSERT INTO orldb.result(testname, score, user_email) VALUES("${testname}", "${score}", "${userEmail}")`
+  db.query(query, (err, result)=>{
+    if(err)
+    {
+      console.log(`err while storing result in database for test ${testname} and email ${userEmail}`)
+    }
+    else{
+      res.json(result)
+    }
+  })
+})
 App.listen(8080, () => {
   console.log("server started in the backend");
 });

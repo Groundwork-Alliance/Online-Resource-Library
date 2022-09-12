@@ -93,6 +93,7 @@ export default function Signup() {
               Name
             </label>
             <input
+              required
               type="text"
               className="form-control"
               name="userName"
@@ -102,6 +103,7 @@ export default function Signup() {
               E-mail Address
             </label>
             <input
+              required
               type="email"
               className="form-control"
               name="userEmail"
@@ -111,6 +113,7 @@ export default function Signup() {
               Password
             </label>
             <input
+              required
               type="password"
               className="form-control"
               name="Password"
@@ -120,6 +123,7 @@ export default function Signup() {
               Confirm Password
             </label>
             <input
+              required
               type="password"
               className="form-control"
               name="confirmPassword"

@@ -37,7 +37,7 @@
 
 /* for login form */
 .loginBackground {
-  background: url("Components/utils/Login-Signup/login.jpg");
+  background: url("../public/login.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

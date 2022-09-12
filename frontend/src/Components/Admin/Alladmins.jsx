@@ -129,7 +129,7 @@ export default function AllUsers() {
                             {
                               dataForUpdation.lenght!==0?
                             <Modal.Body>
-                              <form action="" onSubmit={update_user}>
+                              <form action="" onSubmit={update_user} style={{ backgroundColor: "#F8F9FA" }} className="p-2 rounded border border-1">
                                 <label className="form-label  mt-1 ms-1">
                                   Name:
                                 </label>

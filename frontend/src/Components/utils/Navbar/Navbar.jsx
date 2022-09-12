@@ -6,6 +6,15 @@ import { ImProfile } from "react-icons/im";
 import { FaQuestion } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 export default function Navbar() {
+  const [name, setName] = React.useState("");
+  const [email, setemail] = React.useState("");
+  const history = useNavigate();
+  React.useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem("userData"));
+    setName(data[0].name);
+    setemail(data[0].email);
+  });
+
   const brandName = {
     color: "#001d42",
     textDecoration: "none",
@@ -31,12 +40,8 @@ export default function Navbar() {
     cursor: "pointer",
   };
   const profilePopoverMenus = { textDecoration: "none", color: "#001d42" };
-  const logout = () => {
-    console.log("loggeout");
-  };
 
   const id = "suyog";
-  const history = useNavigate();
   const userPRofile = (e) => {
     id && history(`/profile/${id}`);
   };
@@ -45,8 +50,8 @@ export default function Navbar() {
       <Popover.Header className="bg-light">
         <div className="text-center">
           <ImProfile size={"30px"} className="mt-2 mb-1" />
-          <h6 className="mt-2">Suyog kulkarni</h6>
-          <h6 className="mt-1 mb-4">kulkarnisuyog3@gmail.com</h6>
+          <h6 className="mt-2">{name}</h6>
+          <h6 className="mt-1 mb-4">{email}</h6>
           <a
             onClick={userPRofile}
             style={manageProfileButton}
@@ -62,8 +67,8 @@ export default function Navbar() {
           FAQ's
         </a>
       </Popover.Header>
-      <Popover.Header onClick={logout}>
-        <a href="#" style={profilePopoverMenus}>
+      <Popover.Header>
+        <a href="/" style={profilePopoverMenus}>
           <FiLogOut size={"15px"} className="float-start mt-1 me-2" />
           Sign out
         </a>

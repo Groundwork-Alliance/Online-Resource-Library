@@ -64,10 +64,10 @@ export default function About() {
           Our Goal
         </h3>
         <p style={aboutInfo}>
-          We are building software for the modern world, Where learning is
-          valued, ideas don’t sit in silos and speed and quality are paramount.
-          The value of ORL comes through sharing knowledge, information with the
-          rest of you – we hope you’ll come to think of it as a sort of
+          Enhance the quality of learning and teaching. Meet the learning style
+          or needs of students. Improve the efficiency and effectiveness.
+          Improve user-accessibility and time flexibility to engage learners in
+          the learning process. we hope you’ll come to think of it as a sort of
           education guide.
         </p>
         <h3 style={aboutHeading} className="mt-5">

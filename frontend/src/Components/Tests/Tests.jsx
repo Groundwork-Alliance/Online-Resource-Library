@@ -22,7 +22,7 @@ export default function Tests() {
   });
 
   const testPage = (e) => {
-    history(`/testpage/${e.target.value.split('.')[0]}`)
+    history(`/testpage/${e.target.value}`);
   };
 
   return (
@@ -49,31 +49,39 @@ export default function Tests() {
       </div>
       <HeaderBwlowNav page={"Tests"} />
       <div className="p-5">
-        {
-        data.length===0?
-        <h5 style={{color:"#001d42",fontSize:"27px",margin:"6% 0 0 35%"}}>No test is available currently&nbsp;!!!<br/>&nbsp;&nbsp; Sorry for the inconvenience</h5>
-        :
-        data.map((e) => {
-          return (
-            <div
-              className="border border-1 rounded  w-75 p-3 container mt-3"
-              style={{ backgroundColor: "#F4F7FA" }}
-            >
-              <div className="row">
-                <div className="col-md-8 h3 text-capitalize">{e.split('.')[0]}</div>
-                <div className="col-md-4">
-                  <button
-                    value={e}
-                    className="btn btn-success float-end"
-                    onClick={testPage}
-                  >
-                    Attempt Test
-                  </button>
+        {data.length === 0 ? (
+          <h5
+            style={{ color: "#001d42", fontSize: "27px", margin: "6% 0 0 35%" }}
+          >
+            No test is available currently&nbsp;!!!
+            <br />
+            &nbsp;&nbsp; Sorry for the inconvenience
+          </h5>
+        ) : (
+          data.map((e) => {
+            return (
+              <div
+                className="border border-1 rounded  w-75 p-3 container mt-3"
+                style={{ backgroundColor: "#F4F7FA" }}
+              >
+                <div className="row">
+                  <div className="col-md-8 h3 text-capitalize">
+                    {e.Tables_in_orltests}
+                  </div>
+                  <div className="col-md-4">
+                    <button
+                      value={e.Tables_in_orltests}
+                      className="btn btn-success float-end"
+                      onClick={testPage}
+                    >
+                      Attempt Test
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

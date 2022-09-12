@@ -6,6 +6,15 @@ import { ImProfile } from "react-icons/im";
 import { FaQuestion } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 export default function AdminNavbar() {
+
+  const [name, setName] = React.useState("");
+  const [email, setemail] = React.useState("");
+
+  React.useEffect(() => {
+    const data = JSON.parse(sessionStorage.getItem("userData"));
+    setName(data[0].name);
+    setemail(data[0].email);
+  });
   const brandName = {
     color: "#001d42",
     textDecoration: "none",
@@ -31,10 +40,7 @@ export default function AdminNavbar() {
     cursor: "pointer",
   };
   const profilePopoverMenus = { textDecoration: "none", color: "#001d42" };
-  const logout = () => {
-    console.log("loggeout");
-  };
-
+  
   const id = "suyog";
   const history = useNavigate();
   const userPRofile = (e) => {
@@ -45,15 +51,15 @@ export default function AdminNavbar() {
       <Popover.Header className="bg-light">
         <div className="text-center">
           <ImProfile size={"30px"} className="mt-2 mb-1" />
-          <h6 className="mt-2">Suyog kulkarni</h6>
-          <h6 className="mt-1 mb-4">kulkarnisuyog3@gmail.com</h6>
-          <a
+          <h6 className="mt-2">{name}</h6>
+          <h6 className="mt-1 mb-4">{email}</h6>
+          {/* <a
             onClick={userPRofile}
             style={manageProfileButton}
             className="search"
           >
             Manage Your Profile
-          </a>
+          </a> */}
         </div>
       </Popover.Header>
       <Popover.Header className="bg-light">
@@ -64,8 +70,8 @@ export default function AdminNavbar() {
 
         
       </Popover.Header>
-      <Popover.Header onClick={logout}>
-        <a href="#" style={profilePopoverMenus}>
+      <Popover.Header>
+        <a href="/" style={profilePopoverMenus}>
           <FiLogOut size={"15px"} className="float-start mt-1 me-2" />
           Sign out
         </a>
@@ -94,7 +100,7 @@ export default function AdminNavbar() {
         </div>
         <div className="col-md-6 mt-2">
           <ul className="nav justify-content-end p-2 me-4">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 className="nav-link"
                 aria-current="page"
@@ -103,11 +109,12 @@ export default function AdminNavbar() {
               >
                 Summery
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="/alladmins"
+                // to="/alladmins"
+                to="/home"
                 style={link}
               >
                 Admins
