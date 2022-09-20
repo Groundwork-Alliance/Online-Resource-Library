@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import {useNavigate} from 'react-router-dom'
 import {AiOutlineDownload} from 'react-icons/ai'
 
-export default function Profile() {
+export default function AdminProfile() {
 
   const [userData, setUserdata] = useState([])
   const [showUpdateForm, setShowUpdateForm] = useState(false);
@@ -258,27 +258,6 @@ export default function Profile() {
       :
       <p>{"No data is available"}</p>
       }
-      <div className="mt-4 p-2">
-          <h3 style={aboutHeading}>Results</h3>
-         {
-           result.length!==0?
-           result.map(e=>{
-             return(
-              <div className="alert alert-primary w-75" style={{left:"15%", position:"relative"}}>
-                <details style={{fontSize:"20px"}} className="mt-2">
-                  <summary style={{textTransform:"capitalize"}}>{e.testname}</summary>
-                  <p className="mt-3 ms-2 bg-light p-2 rounded">Score: {e.score}</p>
-                  {/* <a className="mt-3 ms-2 bg-light p-2 rounded" style={{width:"400px"}}>Download Certificate Of Completion {<AiOutlineDownload className="ms-3" />}</a> */}
-                </details>
-              </div>
-             )
-           })
-           : 
-           <div>
-              <p style={{left:"15%", position:"relative", fontSize:"22px", color:"red"}}>No Results available currently !</p>
-           </div>
-         }
-      </div>
     </div>
   );
 }

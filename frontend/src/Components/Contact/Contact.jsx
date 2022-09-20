@@ -7,12 +7,14 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { CgMail } from "react-icons/cg";
+
 export default function Contact() {
   const formLabel = {
     color: "#001d42",
     fontSize: "17px",
     fontWeight: "400",
   };
+
   return (
     <div>
       <Helmet>
@@ -27,43 +29,28 @@ export default function Contact() {
         style={{ position: "relative", left: "13%" }}
       >
         <div className="col">
-          <form
-            action="#"
-            style={{ backgroundColor: "#F4F7FA" }}
-            className="p-4 rounded border"
+          <form action="https://public.herotofu.com/v1/17b6ff50-3888-11ed-8ff6-d1ee553f3964" method="post"
+          style={{ backgroundColor: "#F4F7FA" }}
+          className="p-4 rounded border"
           >
-            <label htmlFor="" style={formLabel}>
-              Your Name
-            </label>
-            <input
-              type="text"
-              className="form-control border border-1 border-dark"
-              placeholder="Your name"
-            />
-            <label htmlFor="" className="mt-2" style={formLabel}>
-              Email Address
-            </label>
-            <input
-              type="email"
-              className="form-control border border-1 border-dark"
-              placeholder="Your e-mail address"
-            />
-            <label htmlFor="" className="mt-2" style={formLabel}>
-              Your Message
-            </label>
-            <textarea
-              name=""
-              id=""
-              rows="5"
-              className="form-control border border-1 border-dark"
-              placeholder="What can we help with?"
-            ></textarea>
-            <button
-              className="btn btn-primary mt-3 w-25"
+            <div>
+              <label for="name" style={formLabel}>Your Name</label>
+              <input name="Name" id="name" type="text" required className="form-control border border-1 border-dark"
+              placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email" style={formLabel} className="mt-2">Your Email</label>
+              <input name="Email" id="email" type="email" required  className="form-control border border-1 border-dark"
+              placeholder="Your e-mail address"/>
+            </div>
+            <div>
+              <input  value="submit" className="btn btn-primary mt-3 w-25"
               style={{ position: "relative", left: "35%" }}
-            >
-              Submit
-            </button>
+              type="submit" />
+            </div>
+          <p className="mt-3 ms-3" style={{
+            color: "#001d42",
+          }}>Send us your name and email and we will reach out to you in no time!</p>
           </form>
         </div>
         <div

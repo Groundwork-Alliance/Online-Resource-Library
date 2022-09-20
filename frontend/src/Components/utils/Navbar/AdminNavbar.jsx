@@ -44,7 +44,7 @@ export default function AdminNavbar() {
   const id = "suyog";
   const history = useNavigate();
   const userPRofile = (e) => {
-    id && history(`/profile/${id}`);
+    id && history(`/adminprofile/${id}`);
   };
   const popover = (
     <Popover id="popover-basic">
@@ -53,13 +53,13 @@ export default function AdminNavbar() {
           <ImProfile size={"30px"} className="mt-2 mb-1" />
           <h6 className="mt-2">{name}</h6>
           <h6 className="mt-1 mb-4">{email}</h6>
-          {/* <a
+          <a
             onClick={userPRofile}
             style={manageProfileButton}
             className="search"
           >
             Manage Your Profile
-          </a> */}
+          </a>
         </div>
       </Popover.Header>
       <Popover.Header className="bg-light">
@@ -133,6 +133,11 @@ export default function AdminNavbar() {
             <li className="nav-item">
               <Link className="nav-link" to="/alltests" style={link}>
                 Tests
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/allresults" style={link}>
+                Results
               </Link>
             </li>
             <li>

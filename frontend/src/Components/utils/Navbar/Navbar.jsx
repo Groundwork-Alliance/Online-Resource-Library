@@ -11,8 +11,11 @@ export default function Navbar() {
   const history = useNavigate();
   React.useEffect(() => {
     const data = JSON.parse(sessionStorage.getItem("userData"));
-    setName(data[0].name);
-    setemail(data[0].email);
+    if (data.length!==0)
+    {
+      setName(data[0].name);
+      setemail(data[0].email);
+    }
   });
 
   const brandName = {

@@ -346,6 +346,64 @@ App.post('/saveresult', (req, res)=>{
     }
   })
 })
+
+App.post('/updateuserprofile', (req,res)=>{
+  let {id, name, email} = req.body;
+  let query = `UPDATE orldb.user SET name = "${name}", email = "${email}" WHERE user_id="${id}"`;
+  db.query(query, (err, result)=>{
+    if (err)
+    {
+      console.log(`err while updation the user data for user ${name} and email ${email}\n ${err}`)
+    }
+    else
+    {
+      res.json(result)
+    }
+  })
+})
+
+App.post("/getresult", (req, res) => {
+  let { email } = req.body;
+  let query = `SELECT * FROM orldb.result WHERE user_email="${email}"`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(`err While fetching the results for ${email}\n ${err}`);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+App.get('/getallteresults', (req,res)=>{
+  let query = "SELECT * FROM orldb.result";
+  db.query(query, (err,result)=>{
+    if(err)
+    {
+      console.log("error while fetching all the results: \n", err)
+    }
+    else{
+      res.json(result)   
+    }
+  })
+})
+
+App.post('/deleteoneresult', (req,res)=>{
+  let{id} = req.body;
+  let query = `DELETE FROM orldb.result WHERE result_id=${id}`;
+  db.query(query, (err,result)=>{
+    if(err)
+    {
+      console.log(`err while deleting result with id ${id}:\n ${err}`)
+    }
+    else
+    {
+      res.json(result)
+    }
+  })
+})
+
+
+// running the back end server on 8080 (front end is on 3000)
 App.listen(8080, () => {
   console.log("server started in the backend");
 });

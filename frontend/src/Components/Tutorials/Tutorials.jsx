@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import HeaderBwlowNav from "../utils/Navbar/HeaderBelowNav";
 export default function Tutorials() {
 
-  let [tutorials,setTutorials]=React.useState('');
+  let [tutorials,setTutorials]=React.useState([]);
+  const [searchInput, setSearchInput] = React.useState("");
+
 
   React.useEffect(() => {
     fetch("http://localhost:8080/allturorialsontutorialspage")
@@ -18,6 +20,24 @@ export default function Tutorials() {
     let id = e.currentTarget.value;
     id && history(`/tutorial/${id}`);
   };
+
+  const search = (e) =>{
+    setSearchInput(e.target.value.toLowerCase())
+    e.preventDefault()
+  }
+
+  const filteredData = tutorials.filter((el) => {
+    //if no input the return the original
+    console.info(el)
+    if (searchInput === "") {
+        return el;
+    }
+    //return the item which contains the user input
+    else {
+        return el.name.toLowerCase().includes(searchInput)
+    }
+})
+
   return (
     <div>
       <Helmet>
@@ -27,10 +47,10 @@ export default function Tutorials() {
         <p style={{ fontSize: "20px", color: "#001d42" }}>
           Search for the tutorial here
         </p>
-        <form action="#">
+        
           <div className="row">
             <div className="col">
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" onChange={search}/>
             </div>
             <div className="col">
               <button type="submit" className="btn search">
@@ -38,12 +58,12 @@ export default function Tutorials() {
               </button>
             </div>
           </div>
-        </form>
+        
       </div>
       <HeaderBwlowNav page={"Tutorials"} />
       {/* main section for all the tutorials */}
       {
-        tutorials.length===0?
+        filteredData.length===0?
         <h5 style={{color:"#001d42",fontSize:"27px",margin:"6% 0 0 35%"}}>No tutorial is available currently!!!<br/>&nbsp;&nbsp;&nbsp; Sorry for the inconvenience</h5>
         :
         <div className="mt-5">
@@ -51,7 +71,7 @@ export default function Tutorials() {
           className="row gap-4 p-5"
           style={{ position: "relative", left: "10%" }}
         >
-          {tutorials.map((e) => {
+          {filteredData.map((e) => {
             return (
               <div
                 className="col-md-3 border rounded border-1 border-dark p-3"

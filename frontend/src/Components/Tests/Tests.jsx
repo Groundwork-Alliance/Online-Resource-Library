@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Tests() {
   const history = useNavigate();
   const [data, setData] = React.useState([]);
+  const [searchInput, setSearchInput] = React.useState("");
 
   React.useEffect(() => {
     const url = `http://localhost:8080/getalltests`;
@@ -19,11 +20,32 @@ export default function Tests() {
       .then((data) => {
         setData(data);
       });
-  });
+  }, []);
+
+
+  const search = (e) =>{
+    var lowerCase = e.target.value.toLowerCase();
+    setSearchInput(lowerCase);
+    e.preventDefault();
+}
+
+  const filteredData = data.filter((el) => {
+    //if no input the return the original
+    if (searchInput === '') {
+        return el;
+    }
+    //return the item which contains the user input
+    else {
+        return el.Tables_in_orltests.toLowerCase().includes(searchInput)
+    }
+})
 
   const testPage = (e) => {
     history(`/testpage/${e.target.value}`);
   };
+
+
+
 
   return (
     <div>
@@ -37,7 +59,7 @@ export default function Tests() {
         <form action="#">
           <div className="row">
             <div className="col">
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" onChange={search}/>
             </div>
             <div className="col">
               <button type="submit" className="btn search">
@@ -49,7 +71,7 @@ export default function Tests() {
       </div>
       <HeaderBwlowNav page={"Tests"} />
       <div className="p-5">
-        {data.length === 0 ? (
+        {filteredData.length === 0 ? (
           <h5
             style={{ color: "#001d42", fontSize: "27px", margin: "6% 0 0 35%" }}
           >
@@ -58,7 +80,7 @@ export default function Tests() {
             &nbsp;&nbsp; Sorry for the inconvenience
           </h5>
         ) : (
-          data.map((e) => {
+          filteredData.map((e) => {
             return (
               <div
                 className="border border-1 rounded  w-75 p-3 container mt-3"
